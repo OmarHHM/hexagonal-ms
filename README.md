@@ -15,8 +15,9 @@ Es importante también instalar Plop en caso de que no funcione correctamente. P
     npm install -g plop
 
 ## Funcionalidades
-    **Creación de Microservicios: Genera microservicios basados en la arquitectura hexagonal.
-    **Endpoints con Recursos: Permite crear modelos, servicios, repositorios y controladores de forma automatizada para cada recurso o endpoint que desees implementar.
+        
+- **Creación de Microservicios: Genera microservicios basados en la arquitectura hexagonal**.
+- **Endpoints con Recursos: Permite crear modelos, servicios, repositorios y controladores de forma automatizada para cada recurso o endpoint que desees implementar**.
 
 ## Uso
 Este proyecto servirá como plantilla para aquellos que deseen reutilizarlo y adaptarlo a las necesidades de su empresa y su metodología de trabajo. Facilita el desarrollo y acelera el proceso de creación de microservicios.
