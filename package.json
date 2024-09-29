@@ -1,6 +1,6 @@
 {
   "name": "hexagonal-ms",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Generador de microservicios con arquitectura hexagonal, generador de endpoints",
   "main": "cli.js",
   "type": "module",
@@ -18,7 +18,7 @@
     "hexagonal-ms": "./cli.js"
   },
   "author": "Omar Hernández Hernández",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "plop": "^4.0.1"
   },
