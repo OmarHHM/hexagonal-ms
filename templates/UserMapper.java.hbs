@@ -1,0 +1,33 @@
+package  {{dominio}}.{{projectName}}.util;
+
+import  {{dominio}}.{{projectName}}.application.dto.UserRequestDTO;
+import  {{dominio}}.{{projectName}}.application.dto.UserResponseDTO;
+import  {{dominio}}.{{projectName}}.domain.model.User;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+
+/**
+ * Provides objects mapping,
+ * acting as a abstraction layer of mapper provider
+ */
+@Component
+@RequiredArgsConstructor
+public class UserMapper {
+
+    private final ModelMapper mapper;
+
+
+    public User toModel(UserRequestDTO request) {
+        return mapper.map(request, User.class);
+    }
+
+    public UserRequestDTO toRequest(User user) {
+        return mapper.map(user, UserRequestDTO.class);
+    }
+
+    public UserResponseDTO toResponse(User user) {
+        return mapper.map(user, UserResponseDTO.class);
+    }
+
+}

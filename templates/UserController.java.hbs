@@ -1,0 +1,55 @@
+package {{dominio}}.{{projectName}}.api.controller;
+
+import {{dominio}}.{{projectName}}.application.dto.AuthenticationRequestDTO;
+import {{dominio}}.{{projectName}}.application.dto.AuthenticationResponseDTO;
+import {{dominio}}.{{projectName}}.application.dto.UserRequestDTO;
+import {{dominio}}.{{projectName}}.application.dto.UserResponseDTO;
+import {{dominio}}.{{projectName}}.application.service.AuthenticationService;
+import {{dominio}}.{{projectName}}.application.service.UserService;
+import {{dominio}}.{{projectName}}.domain.model.User;
+import {{dominio}}.{{projectName}}.util.UserMapper;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+
+/**
+ * UserController handles API requests related to users.
+ */
+@RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
+public class UserController {
+
+
+    private final UserService userService;
+    private final AuthenticationService authenticationService;
+    private final UserMapper mapper;
+
+    @GetMapping
+    public ResponseEntity<List<UserResponseDTO>> getUsers() {
+        List<User> users = userService.find();
+        var resp = users.stream().map(mapper::toResponse).toList();
+        return ResponseEntity.ok(resp);
+    }
+
+    @PostMapping
+    @RolesAllowed("ADMIN") // needs to enable 'EnableGlobalMethodSecurity' at security class to work
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody @Valid UserRequestDTO request) {
+        var user = mapper.toModel(request);
+        user = userService.save(user);
+        var resp = mapper.toResponse(user);
+        return ResponseEntity.created(URI.create(user.getId().toString())).body(resp);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody @Valid AuthenticationRequestDTO request) {
+        var token = authenticationService.authenticate(request.getEmail(), request.getPassword());
+        return ResponseEntity.ok(new AuthenticationResponseDTO(token));
+    }
+}
+

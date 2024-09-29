@@ -1,0 +1,24 @@
+package {{dominio}}.{{projectName}}.util;
+
+import {{dominio}}.{{projectName}}.domain.model.{{recurso}};
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sRequestDTO;
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sResponseDTO;
+
+/**
+ * Mapper class for converting between {{recurso}} entities and DTOs.
+ */
+public class {{recurso}}Mapper {
+
+    public static {{recurso}} toEntity({{recurso}}sRequestDTO dto) {
+        {{recurso}} {{recurso}} = new {{recurso}}();
+        {{recurso}}.setName(dto.getName());
+        return {{recurso}};
+    }
+
+    public static {{recurso}}sResponseDTO toDto({{recurso}} entity) {
+        {{recurso}}sResponseDTO dto = new {{recurso}}sResponseDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        return dto;
+    }
+}

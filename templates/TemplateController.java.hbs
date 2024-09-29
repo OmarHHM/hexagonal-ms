@@ -1,0 +1,85 @@
+package {{dominio}}.{{projectName}}.api.controller;
+
+import {{dominio}}.{{projectName}}.application.service.{{recurso}}sService;
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sResponseDTO;
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sRequestDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * REST controller for managing {{recurso}}s.
+ */
+@RestController
+@RequestMapping("/api/{{recurso}}s")
+public class {{recurso}}sController {
+
+    private final {{recurso}}sService {{recurso}}sService;
+
+    @Autowired
+    public {{recurso}}sController({{recurso}}sService {{recurso}}sService) {
+        this.{{recurso}}sService = {{recurso}}sService;
+    }
+
+    /**
+     * Create a new {{recurso}}.
+     *
+     * @param request the {{recurso}} request data
+     * @return ResponseEntity containing the created {{recurso}} data
+     */
+    @PostMapping
+    public ResponseEntity<{{recurso}}sResponseDTO> create{{recurso}}(@RequestBody {{recurso}}sRequestDTO request) {
+        {{recurso}}sResponseDTO created{{recurso}} = {{recurso}}sService.create{{recurso}}(request);
+        return ResponseEntity.ok(created{{recurso}});
+    }
+
+    /**
+     * Get all {{recurso}}s.
+     *
+     * @return List of {{recurso}} response data
+     */
+    @GetMapping
+    public ResponseEntity<List<{{recurso}}sResponseDTO>> getAll{{recurso}}s() {
+        List<{{recurso}}sResponseDTO> {{recurso}}s = {{recurso}}sService.getAll{{recurso}}s();
+        return ResponseEntity.ok({{recurso}}s);
+    }
+
+    /**
+     * Get a {{recurso}} by id.
+     *
+     * @param id the id of the {{recurso}}
+     * @return ResponseEntity containing the {{recurso}} data
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<{{recurso}}sResponseDTO> get{{recurso}}ById(@PathVariable Long id) {
+        {{recurso}}sResponseDTO {{recurso}} = {{recurso}}sService.get{{recurso}}ById(id);
+        return ResponseEntity.ok({{recurso}});
+    }
+
+    /**
+     * Update an existing {{recurso}}.
+     *
+     * @param id the id of the {{recurso}}
+     * @param request the updated {{recurso}} request data
+     * @return ResponseEntity containing the updated {{recurso}} data
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<{{recurso}}sResponseDTO> update{{recurso}}(@PathVariable Long id, @RequestBody {{recurso}}sRequestDTO request) {
+        {{recurso}}sResponseDTO updated{{recurso}} = {{recurso}}sService.update{{recurso}}(id, request);
+        return ResponseEntity.ok(updated{{recurso}});
+    }
+
+    /**
+     * Delete a {{recurso}} by id.
+     *
+     * @param id the id of the {{recurso}}
+     * @return ResponseEntity with no content
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete{{recurso}}(@PathVariable Long id) {
+        {{recurso}}sService.delete{{recurso}}(id);
+        return ResponseEntity.noContent().build();
+    }
+}

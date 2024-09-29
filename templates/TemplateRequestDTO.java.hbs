@@ -1,0 +1,15 @@
+package {{dominio}}.{{projectName}}.application.dto;
+
+import javax.validation.constraints.NotNull;
+import lombok.Data;
+
+/**
+ * Data Transfer Object for creating and updating {{recurso}}s.
+ */
+
+@Data
+public class {{recurso}}sRequestDTO {
+
+    @NotNull
+    private String name;
+}

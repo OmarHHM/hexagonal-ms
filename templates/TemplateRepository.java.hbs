@@ -1,0 +1,13 @@
+package {{dominio}}.{{projectName}}.infrastructure.repository;
+
+import {{dominio}}.{{projectName}}.domain.model.{{recurso}};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Repository interface for managing {{recurso}} entities.
+ */
+@Repository
+public interface {{recurso}}sRepository extends JpaRepository<{{recurso}}, Long> {
+    // Additional query methods can be defined here
+}

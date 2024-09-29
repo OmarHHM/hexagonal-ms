@@ -1,0 +1,43 @@
+# Configuración de la base de datos
+spring.datasource.username=usuario
+spring.datasource.password=contraseña
+
+{{#if (eq database 'mysql')}}
+spring.datasource.url=jdbc:{{database}}://localhost:3306/{{projectName}}?createDatabaseIfNotExist=true
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+{{/if}}
+
+{{#if (eq database 'postgresql')}}
+spring.datasource.url=jdbc:{{database}}://localhost:5432/{{projectName}}?createDatabaseIfNotExist=true
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+{{/if}}
+
+{{#if (eq database 'sqlserver')}}
+spring.datasource.url=jdbc:{{database}}://localhost:1433/{{projectName}}?createDatabaseIfNotExist=true
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.database-platform=org.hibernate.dialect.SQLServerDialect
+{{/if}}
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Configuración adicional
+spring.jpa.properties.hibernate.format_sql=true
+spring.datasource.hikari.connection-timeout=30000
+spring.datasource.hikari.maximum-pool-size=10
+
+# Configuración de logging
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+
+secret.key={{secretKey}}
+springdoc.api-docs.path=/v3/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+server.servlet.context-path=/api
+openapi.dev-url=http://localhost:8080
+openapi.prod-url=http://{{projectName}}.com
+springdoc.api-docs.enabled=true

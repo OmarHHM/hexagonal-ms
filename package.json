@@ -1,0 +1,31 @@
+{
+  "name": "hexagonal-ms",
+  "version": "1.0.25",
+  "description": "Generador de microservicios con arquitectura hexagonal, generador de endpoints",
+  "main": "cli.js",
+  "type": "module",
+  "scripts": {
+    "start": "plop",
+    "build": "pkg cli.js"
+  },
+  "keywords": [
+    "Springboot",
+    "Java",
+    "microservicios",
+    "hexagonal"
+  ],
+  "bin": {
+    "hexagonal-ms": "./cli.js"
+  },
+  "author": "Omar Hernández Hernández",
+  "license": "ISC",
+  "dependencies": {
+    "plop": "^4.0.1"
+  },
+  "bundleDependencies": [
+    "plop"
+  ],
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}

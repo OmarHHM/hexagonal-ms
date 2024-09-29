@@ -1,0 +1,14 @@
+package {{dominio}}.{{projectName}}.infrastructure.repository;
+
+import {{dominio}}.{{projectName}}.domain.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
+
+/**
+ * UserRepository interface for accessing User data.
+ */
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    boolean existsByEmail(String email);}

@@ -1,0 +1,54 @@
+package {{dominio}}.{{projectName}}.application.service;
+
+import {{dominio}}.{{projectName}}.domain.model.{{recurso}};
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sResponseDTO;
+import {{dominio}}.{{projectName}}.application.dto.{{recurso}}sRequestDTO;
+import {{dominio}}.{{projectName}}.infrastructure.repository.{{recurso}}sRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Service class for managing {{recurso}}s.
+ */
+@Service
+public class {{recurso}}sService {
+
+    private final {{recurso}}sRepository {{recurso}}sRepository;
+
+    @Autowired
+    public {{recurso}}sService({{recurso}}sRepository {{recurso}}sRepository) {
+        this.{{recurso}}sRepository = {{recurso}}sRepository;
+    }
+
+    public {{recurso}}sResponseDTO create{{recurso}}({{recurso}}sRequestDTO request) {
+        {{recurso}} {{recurso}} = new {{recurso}}(); // Map request to model
+        // Set fields from request
+        {{recurso}} = {{recurso}}sRepository.save({{recurso}});
+        return new {{recurso}}sResponseDTO(); // Map model to response
+    }
+
+    public List<{{recurso}}sResponseDTO> getAll{{recurso}}s() {
+        return {{recurso}}sRepository.findAll().stream()
+            .map({{recurso}} -> new {{recurso}}sResponseDTO()) // Map model to response
+            .collect(Collectors.toList());
+    }
+
+    public {{recurso}}sResponseDTO get{{recurso}}ById(Long id) {
+        {{recurso}} {{recurso}} = {{recurso}}sRepository.findById(id).orElseThrow();
+        return new {{recurso}}sResponseDTO(); // Map model to response
+    }
+
+    public {{recurso}}sResponseDTO update{{recurso}}(Long id, {{recurso}}sRequestDTO request) {
+        {{recurso}} {{recurso}} = {{recurso}}sRepository.findById(id).orElseThrow();
+        // Update fields from request
+        {{recurso}} = {{recurso}}sRepository.save({{recurso}});
+        return new {{recurso}}sResponseDTO(); // Map model to response
+    }
+
+    public void delete{{recurso}}(Long id) {
+        {{recurso}}sRepository.deleteById(id);
+    }
+}
